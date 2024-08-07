@@ -21,4 +21,9 @@ export class UserService {
     return await this.prisma.user.create({data: createUserRequest});
 
   }
+  async deleteUser(id: number): Promise<void> {
+    await this.prisma.user.delete({
+        where: { id },
+    });
+}
 }

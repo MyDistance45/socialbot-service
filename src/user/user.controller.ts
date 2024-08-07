@@ -14,10 +14,17 @@ export class UserController {
   async findAll(): Promise<UserResponseDto[]> {
     return await this.userService.findAll();
   }
-  
+  @Get(':id')
+  async findOne(@Param('id') id): Promise<UserResponseDto>{
+  return await this.userService.findOne(id);
+  }
   @Post()
   async create(@Body() createUserRequestDto: CreateUserRequestDto): Promise<User> {
     return await this.userService.create(createUserRequestDto);
   }
-
+  @Delete(':id')
+  async deleteUser(@Param('id') id: number): Promise<void> {
+    await this.userService.deleteUser(id);
+  }
 }
+
